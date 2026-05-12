@@ -17,36 +17,27 @@ function initIPCountdown(elementId) {
 
     // Initialize the timer
     function initTimer() {
-        jQuery.ajax({
-            url: ip_countdown_ajax.ajax_url,
-            type: 'POST',
-            data: {
-                action: 'get_timer_data',
-                nonce: ip_countdown_ajax.nonce
-            },
-            success: function (response) {
-                if (response.success) {
-                    remainingTime = response.data.remaining_time;
-
-                    if (response.data.is_expired) {
-                        showTimerExpired();
-                    } else if (remainingTime > 0) {
-                        startCountdown();
-                        // Remove status messages for inline display
-                        if (statusDiv) {
-                            statusDiv.style.display = 'none';
-                        }
-                    } else {
-                        showTimerExpired();
-                    }
-                }
-                // Remove error handling messages
-            },
-            error: function () {
-                // Silent error handling
-                showTimerExpired();
+        let now = Math.floor(Date.now() / 1000);
+        let storedEnd = localStorage.getItem('ip_countdown_endTime');
+        
+        // If no expiration is stored or it expired over an hour ago, reset to new 5 minutes
+        if (!storedEnd || (now - parseInt(storedEnd)) > 3600) {
+            storedEnd = now + 300; // 5 minutes from now
+            localStorage.setItem('ip_countdown_endTime', storedEnd);
+        }
+        
+        remainingTime = parseInt(storedEnd) - now;
+        
+        if (remainingTime > 0) {
+            startCountdown();
+            if (statusDiv) {
+                statusDiv.style.display = 'none';
             }
-        });
+        } else {
+            // Optionally loop if expired to always show some time, or just freeze at 0
+            remainingTime = 0;
+            showTimerExpired();
+        }
     }
 
     // Start the countdown display
