@@ -1,0 +1,294 @@
+/**
+ * IP Countdown Timer CSS Styles
+ * Styles for the countdown timer display
+ */
+
+/* Inline countdown for Gutenberg blocks */
+.ip-countdown-inline {
+    display: inline-block;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.ip-countdown-inline .countdown-cards {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-family: 'Courier New', 'Monaco', monospace;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.ip-countdown-inline .time-card {
+    display: inline-block;
+    min-width: 28px;
+    text-align: center;
+    line-height: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Background, color, font-size, font-family, padding, and border-radius are set dynamically via inline styles */
+}
+
+.ip-countdown-inline .time-separator {
+    font-weight: bold;
+    line-height: 1;
+    /* Color, font-size, font-family, and margin are set dynamically via inline styles */
+}
+
+/* Expired state for inline countdown */
+.ip-countdown-inline.expired .time-card {
+    background: #666;
+    color: #ccc;
+}
+
+.ip-countdown-inline.expired .time-separator {
+    color: #666;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .ip-countdown-inline .countdown-cards {
+        font-size: 1rem;
+    }
+    
+    .ip-countdown-inline .time-card {
+        padding: 4px 6px;
+        min-width: 24px;
+    }
+    
+    .ip-countdown-inline .time-separator {
+        font-size: 1.2rem;
+        margin: 0 2px;
+    }
+}
+
+/* Ensure it works well in paragraphs and inline content */
+p .ip-countdown-inline,
+span .ip-countdown-inline,
+div .ip-countdown-inline {
+    vertical-align: baseline;
+}
+
+/* Make sure it doesn't create line breaks */
+.ip-countdown-inline {
+    white-space: nowrap;
+}
+
+/* Hide any status divs that might still exist */
+.ip-countdown-inline .countdown-status {
+    display: none !important;
+}
+
+/* Smooth transition for expired state */
+.ip-countdown-inline .time-card {
+    transition: all 0.3s ease;
+}
+
+/* Better contrast for accessibility */
+.ip-countdown-inline .time-card {
+    background: #222;
+    border: 1px solid #333;
+}
+
+/* Legacy styles for admin preview */
+.ip-countdown-timer {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 20px;
+    margin: 10px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: white;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ip-countdown-timer .countdown-display {
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-family: 'Courier New', 'Monaco', monospace;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.ip-countdown-timer .time-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.ip-countdown-timer .time-digit {
+    display: inline-block;
+    width: 1.2em;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    padding: 8px 4px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    font-size: inherit;
+    line-height: 1;
+}
+
+.ip-countdown-timer .time-separator {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 8px;
+    color: inherit;
+}
+
+/* Legacy support for old format */
+.ip-countdown-timer .countdown-display .minutes,
+.ip-countdown-timer .countdown-display .seconds {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 0 2px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.ip-countdown-timer .countdown-status {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Expired state */
+.ip-countdown-timer.expired {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    animation: pulse 2s infinite;
+}
+
+.ip-countdown-timer.expired .countdown-display {
+    color: #fff;
+    animation: flash 1s infinite;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes flash {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .ip-countdown-timer {
+        max-width: 250px;
+        padding: 15px;
+    }
+    
+    .ip-countdown-timer .countdown-display {
+        font-size: 2.5rem;
+    }
+    
+    .ip-countdown-timer .countdown-display .minutes,
+    .ip-countdown-timer .countdown-display .seconds {
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ip-countdown-timer {
+        max-width: 200px;
+        padding: 10px;
+    }
+    
+    .ip-countdown-timer .countdown-display {
+        font-size: 2rem;
+    }
+    
+    .ip-countdown-timer .countdown-display .minutes,
+    .ip-countdown-timer .countdown-display .seconds {
+        padding: 6px 10px;
+        margin: 0 1px;
+    }
+}
+
+/* Alternative styles for different themes */
+.ip-countdown-timer.dark-theme {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #ecf0f1;
+}
+
+.ip-countdown-timer.dark-theme .countdown-display .minutes,
+.ip-countdown-timer.dark-theme .countdown-display .seconds {
+    background: rgba(236, 240, 241, 0.1);
+    border: 2px solid rgba(236, 240, 241, 0.2);
+}
+
+.ip-countdown-timer.light-theme {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ip-countdown-timer.light-theme .countdown-display .minutes,
+.ip-countdown-timer.light-theme .countdown-display .seconds {
+    background: rgba(52, 58, 64, 0.1);
+    border: 2px solid rgba(52, 58, 64, 0.2);
+    color: #333;
+}
+
+.ip-countdown-timer.minimal {
+    background: transparent;
+    border: 2px solid #333;
+    color: #333;
+    box-shadow: none;
+}
+
+.ip-countdown-timer.minimal .countdown-display .minutes,
+.ip-countdown-timer.minimal .countdown-display .seconds {
+    background: #333;
+    color: white;
+    border: none;
+}
+
+.ip-countdown-timer.red-gradient {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+}
+
+.ip-countdown-timer.red-gradient.expired {
+    background: linear-gradient(135deg, #c0392b 0%, #8e44ad 100%);
+}
+
+.ip-countdown-timer.green-gradient {
+    background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+    color: white;
+}
+
+.ip-countdown-timer.green-gradient.expired {
+    background: linear-gradient(135deg, #636e72 0%, #2d3436 100%);
+}
+
+.ip-countdown-timer.purple-gradient {
+    background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+    color: white;
+}
+
+.ip-countdown-timer.purple-gradient.expired {
+    background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+}
